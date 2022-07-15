@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather_Forecast</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: Quicksand;
+        }
+
+        body {
+            background: #f3f2ef;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        html {
+            background: #eee;
+        }
+
+        .box {
+            width: 20vw;
+            height: 60vh;
+            border-radius: 5px;
+            box-shadow: 0 2px 30px rgba(black, 0.2);
+            background: darken(#eff3f9, 20%);
+            position: relative;
+            overflow: hidden;
+            transform: translate3d(0, 0, 0);
+            min-width: 200px;
+            min-height: 350px;
+        }
+
+        .wave {
+            opacity: 0.3;
+            position: absolute;
+            top: 120%;
+            left: 50%;
+            background: #d2ddee;
+            width: 500px;
+            height: 500px;
+            margin-left: -250px;
+            margin-top: -250px;
+            transform-origin: 50% 48%;
+            border-radius: 43%;
+            animation: drift 3000ms infinite linear;
+            z-index: 1;
+        }
+
+        .wave.-three {
+            animation: drift 5000ms infinite linear;
+            z-index: 2 !important;
+            opacity: 0.2;
+        }
+
+        .wave.-two {
+            animation: drift 7000ms infinite linear;
+            opacity: 0.1;
+            z-index: 3 !important;
+        }
+
+        .box:after {
+            content: "";
+            display: block;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 11;
+            transform: translate3d(0, 0, 0);
+        }
+
+        @keyframes drift {
+            from {
+                transform: rotate(0deg);
+            }
+
+            from {
+                transform: rotate(360deg);
+            }
+        }
+
+        .info {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 45%;
+            z-index: 4;
+        }
+
+        .location {
+            text-align: center;
+            font-weight: 800;
+        }
+
+        .date {
+            text-align: center;
+            margin-top: 5%;
+            color: lighten(grey, 10%);
+            font-size: 70%;
+        }
+
+        .temp {
+            margin-top: 10%;
+            text-align: center;
+        }
+
+        .weathercon {
+            height: 40%;
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            font-size: 3em;
+            background-color: #a5bbdd;
+            margin-top: 140px;
+        }
+
+        @media (max-width: 600px) {
+            .box {
+                width: 90vw;
+                height: 80vh;
+            }
+
+            .wave {
+                top: 85%;
+            }
+
+            .weathercon {
+                font-size: 5em;
+            }
+
+            .info {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-height: 500px) {
+            .box {
+                height: 80vh;
+            }
+
+            .wave {
+                top: 115%;
+            }
+        }
+
+        body>span {
+            width: 100vw;
+            text-align: center;
+            color: grey;
+        }
+        button{
+            border-color: #0a377b;
+            color: #0a377b;
+            background-color: #7598cd;
+            cursor: pointer;
+        }
+        .form{
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+
+<body>
+   
+    <div class='box'>
+
+        <div class='wave -one'></div>
+        <div class='wave -two'></div>
+        <div class='wave -three'></div>
+        <div class="weathercon">
+            <div class="form">
+                <form action="" method="get">
+                    <input name="city" placeholder="search here city name">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+            <div>
+                <i class='fas fa-sun' style='color: #d36326; text-align: center;'></i>
+            </div>
+        </div>
+        <div class="info">
+            <p style="font-size: 15px;" class="date">Weather:{{data.weather}}|Pressure:{{data.pressure}}
+                |Humidity:{{data.humidity}}</p>
+            <p style="font-size: 15px; text-align: center;">description: {{data.description}}</p>
+            <h1 class="temp">{{data.c_temprature}} &deg;C | {{data.k_temprature}} &deg;F</h1>
+            <h2 class="location">{{data.location}}</h2>
+            <h4 style="text-align: center;">{{data.day}}</h4>
+        </div>
+        
+    </div>
+    <span>Enable location to see yours! :)</span>
+
+</body>
+
+</html>
